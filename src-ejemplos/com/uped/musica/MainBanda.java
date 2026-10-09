@@ -1,22 +1,38 @@
-package com.uped.transporte;
-import com.uped.transporte.modelo.Automovil;
-import com.uped.transporte.modelo.Motocicleta;
-import com.uped.transporte.modelo.CamionDeCarga;
-import com.uped.transporte.modelo.Vehiculo;
+package com.uped.musica;
 
-public class MainTransporte {
+import com.uped.musica.modelo.Instrumento;
+import com.uped.musica.modelo.Guitarra;
+import com.uped.musica.modelo.Piano;
+import com.uped.musica.modelo.Bateria;
+
+public class MainBanda {
     public static void main(String[] args) {
-        Vehiculo v1 = new Automovil("P123-456", 320);
-        Vehiculo v2 = new Motocicleta("M789-012", 150);
-        Vehiculo v3 = new CamionDeCarga("C345-678", 500);
+        // Objeto con tipo declarado "Instrumento" y tipo real "Guitarra"
+        Instrumento i = new Guitarra();
 
-        v1.mostrarFicha();
-        System.out.println("Peaje: $" + v1.calcularCostoPeaje());
+        // 1. Campo 'tipo': Ligadura estática -> Imprime "generico"
+        System.out.println(i.tipo);
 
-        v2.mostrarFicha();
-        System.out.println("Peaje: $" + v2.calcularCostoPeaje());
+        // 2. Método static 'identificar()': Ligadura estática -> Imprime "Instrumento generico"
+        System.out.println(i.identificar());
 
-        v3.mostrarFicha();
-        System.out.println("Peaje: $" + v3.calcularCostoPeaje());
+        // 3. Método final 'mostrarTipo()': Ligadura estática -> Imprime "Tipo declarado: generico"
+        i.mostrarTipo();
+
+        // 4. Método sobrescrito 'tocar()': Ligadura dinámica -> Imprime "Rasgueo de cuerdas"
+        i.tocar();
+
+        System.out.println("--- banda completa ---");
+
+        // Polimorfismo mediante ligadura dinámica
+        Instrumento[] banda = {
+            new Guitarra(),
+            new Piano(),
+            new Bateria()
+        };
+
+        for (Instrumento instr : banda) {
+            instr.tocar();
+        }
     }
 }
